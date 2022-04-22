@@ -3,3 +3,10 @@ version: 0.0.1
 authors: [SidGames5, AnotherSlime]
 main: net.ddns.mlgland.towerwars.TowerWars
 api-version: 1.8
+commands:
+  heal:
+    description: "Heals the player"
+    usage: "/<command>"
+    aliases:
+      - feed
+      - revive
