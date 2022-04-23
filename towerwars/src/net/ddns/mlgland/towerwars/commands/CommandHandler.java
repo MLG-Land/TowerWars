@@ -1,5 +1,6 @@
 package net.ddns.mlgland.towerwars.commands;
 
+import net.ddns.mlgland.towerwars.commands.client.CommandTest;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,30 +8,22 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandHandler implements CommandExecutor {
-
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+        // checks if the sender is a player
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "Only players can use this command!");
-            return true;
+
+        } else {
+            Player player = (Player) sender;
+            if (args.length >= 1) {
+                switch (args[0]) {
+                    case "test":
+                        CommandTest.bind(player, command, s, args);
+                }
+            } else {
+                player.sendMessage(ChatColor.RED + "Usage: /tw <command> [args]");
+            }
         }
-
-        Player player = (Player) sender;
-
-        if (!(player.hasPermission("towerwars.heal"))) {
-            sender.sendMessage(ChatColor.RED + "You do not have permission to run this command!");
-        }
-
-        // heal
-        if (command.getName().equalsIgnoreCase("heal")) {
-            double maxHealth = player.getHealthScale();
-            player.setHealth(maxHealth);
-
-            player.setFoodLevel(20);
-
-            player.sendMessage("§eYou have been healed!");
-        }
-
         return true;
     }
 }

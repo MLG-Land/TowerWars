@@ -9,15 +9,13 @@ public class TowerWars extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        CommandHandler cmdh = new CommandHandler();
-
         getServer().getConsoleSender().sendMessage("Registering events...");
         getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
-        getServer().getConsoleSender().sendMessage("Registered event 1/1");
+        getServer().getConsoleSender().sendMessage("Registered event 1/1 (task 1/2)");
 
-        getServer().getConsoleSender().sendMessage("Registering commands...");
-        getCommand("heal").setExecutor(cmdh);
-        getServer().getConsoleSender().sendMessage("Registered command 1/1");
+        getServer().getConsoleSender().sendMessage("Registering command handler...");
+        getCommand("towerwars").setExecutor(new CommandHandler());
+        getServer().getConsoleSender().sendMessage("Registered command handler (task 2/2)");
 
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[TowerWars] Plugin is now enabled");
     }
